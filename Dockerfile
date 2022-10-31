@@ -36,3 +36,4 @@ EXPOSE 8080
 
 ENTRYPOINT ["Rscript"]
 CMD ["server.R"]
+
