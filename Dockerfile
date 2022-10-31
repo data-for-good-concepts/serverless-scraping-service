@@ -25,12 +25,15 @@ RUN apt-get update -qq \
     && apt-get install \
        wget \
        libz-dev \
+       licui18n \
+       licuuc \
+       licudata  \
     && wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz \
     && tar -xvzf geckodriver* \
     && chmod +x geckodriver
 
 # First install devtools and CRAN version httpuv so that we have dependencies
-RUN R -e "install.packages(c('devtools', 'httpuv', 'stringi'))"
+RUN R -e "install.packages(c('devtools', 'httpuv'))"
 
 COPY . .
 
