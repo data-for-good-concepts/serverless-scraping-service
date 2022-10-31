@@ -21,7 +21,7 @@ RUN apt-get update -qq \
        libxml2-dev \
        default-jdk \
        firefox \
-    && apt-get install -y libsodium-dev \
+    && apt-get install -y libcurl4-openssl-dev \
     && apt-get install wget \
     && wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz \
     && tar -xvzf geckodriver* \
