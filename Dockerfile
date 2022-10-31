@@ -27,6 +27,9 @@ RUN apt-get update -qq \
     && tar -xvzf geckodriver* \
     && chmod +x geckodriver
 
+# Prevent issues installing `httpuv`
+RUN apk add --no-cache --update-cache --repository http://nl.alpinelinux.org/alpine/v3.8/main alsa-lib-dev=1.1.6-r0
+
 COPY . .
 
 # Install package dependencies
