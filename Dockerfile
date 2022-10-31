@@ -30,7 +30,7 @@ RUN apt-get update -qq \
     && chmod +x geckodriver
 
 # First install devtools and CRAN version httpuv so that we have dependencies
-RUN R -e "install.packages(c('devtools', 'httpuv'))"
+RUN R -e "install.packages(c('devtools', 'httpuv', 'stringi'))"
 
 COPY . .
 
