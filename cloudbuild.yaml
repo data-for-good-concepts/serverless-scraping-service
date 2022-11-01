@@ -11,10 +11,7 @@ steps:
             '.'
         ]
 - name: 'gcr.io/cloud-builders/docker'
-  args:
-    - push
-    - 'gcr.io/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:latest'
-  id: PushLatest
+  args: ['push', 'gcr.io/$PROJECT_ID/_SERVICE_NAME:latest']
 images: ['gcr.io/$PROJECT_ID/test:latest']
 options:
   substitutionOption: ALLOW_LOOSE
