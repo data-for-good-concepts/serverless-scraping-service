@@ -26,20 +26,4 @@ jobs:
     - name: 'Build image 💿'
       run: |-
         gcloud builds submit \
-          --quiet \
-          --tag "gcr.io/$PROJECT_ID/$SERVICE"
-
-    - name: 'Deploy service 🏗'
-      id: 'deploy'
-      uses: 'google-github-actions/deploy-cloudrun@v0'
-      with:
-        service: '${{ env.SERVICE }}'
-        image: 'gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:latest'
-        region: '${{ env.REGION }}'
-
-    - name: 'Make service public 🌎'
-      run: |
-        gcloud run services add-iam-policy-binding $SERVICE \
-          --member='allUsers' \
-          --role='roles/run.invoker' \
           --region='${{ env.REGION }}'
