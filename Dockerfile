@@ -1,5 +1,5 @@
 # Install base package
-FROM rocker/r-ver
+FROM rocker/r-ver:4.1.1
 
 # User privileges
 USER root
@@ -20,6 +20,7 @@ RUN apt-get update --quiet \
  && apt-get install --no-install-recommends --assume-yes \
             libxml2-dev \
             libcurl4-openssl-dev \
+            libsodium-dev \
             libz-dev \
             default-jdk \
             firefox \
