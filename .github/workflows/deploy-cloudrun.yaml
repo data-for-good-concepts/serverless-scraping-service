@@ -39,3 +39,4 @@ jobs:
     - name: 'Make service public 🌎'
       run: |
         gcloud run services set-iam-policy ${{ env.SERVICE }} policy.yaml
+
