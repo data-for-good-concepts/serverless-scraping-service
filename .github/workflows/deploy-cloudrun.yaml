@@ -38,4 +38,8 @@ jobs:
 
     - name: 'Make service public 🌎'
       run: |
-        gcloud run services set-iam-policy ${{ env.SERVICE }} policy.yaml
+        gcloud run services add-iam-policy-binding [SERVICE_NAME] \
+          --member='allUsers' \
+          --role='roles/run.invoker' \
+          --service='${{ env.SERVICE }}'
+          --region='${{ env.REGION }}'

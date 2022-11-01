@@ -31,10 +31,11 @@ RUN apt-get update --quiet \
  && tar -xvzf geckodriver* \
  && chmod +x geckodriver
 
-COPY . .
-
 # Install package dependencies
+COPY ./renv.lock .
 RUN R -e "renv::restore()"
+
+COPY . .
 
 EXPOSE 8080
 
