@@ -1,12 +1,16 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker pull gcr.io/$PROJECT_ID/test:latest || exit 0']
+  args: ['-c', 'docker pull gcr.io/$PROJECT_ID/_SERVICE_NAME:latest || exit 0']
 - name: 'gcr.io/cloud-builders/docker'
   args: [
             'build',
-            '--tag', 'gcr.io/$PROJECT_ID/test:latest',
-            '--cache-from', 'gcr.io/$PROJECT_ID/test:latest',
+            '--tag', 'gcr.io/$PROJECT_ID/_SERVICE_NAME:latest',
+            '--cache-from', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
             '.'
         ]
 images: ['gcr.io/$PROJECT_ID/test:latest']
+options:
+  substitutionOption: ALLOW_LOOSE
+substitutions:
+  _SERVICE_NAME: eurostat-scraper
