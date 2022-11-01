@@ -42,4 +42,4 @@ COPY . .
 EXPOSE 8080
 
 ENTRYPOINT ["Rscript"]
-CMD ["server.R"]
+CMD ["./usr/scraper/server.R"]
