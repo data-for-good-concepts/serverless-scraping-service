@@ -28,7 +28,6 @@ jobs:
         gcloud builds submit \
           --quiet \
           --tag "gcr.io/$PROJECT_ID/$SERVICE"
-
     - name: 'Deploy service 🏗'
       id: 'deploy'
       uses: 'google-github-actions/deploy-cloudrun@v0'
@@ -40,4 +39,3 @@ jobs:
     - name: 'Make service public 🌎'
       run: |
         gcloud run services set-iam-policy ${{ env.SERVICE }} policy.yaml
-
