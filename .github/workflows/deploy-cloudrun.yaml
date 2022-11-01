@@ -25,7 +25,9 @@ jobs:
 
     - name: 'Build image 💿'
       run: |-
-        gcloud builds submit --config cloudbuild.yaml .
+        gcloud builds submit \
+          --quiet \
+          --tag "gcr.io/$PROJECT_ID/$SERVICE"
 
     - name: 'Deploy service 🏗'
       id: 'deploy'

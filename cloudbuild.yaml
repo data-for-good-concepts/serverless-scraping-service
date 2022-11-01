@@ -2,6 +2,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
   args: ['-c', 'docker pull gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest || exit 0']
+
 - name: 'gcr.io/cloud-builders/docker'
   args: [
             'build',
@@ -10,6 +11,7 @@ steps:
             '.'
         ]
 images: ['gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
+
 options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
