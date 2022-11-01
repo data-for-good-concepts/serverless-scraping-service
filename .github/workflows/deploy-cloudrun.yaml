@@ -23,13 +23,13 @@ jobs:
     - name: 'Set up Cloud SDK 🌥'
       uses: 'google-github-actions/setup-gcloud@v0'
 
-    - name: 'Build image 📦'
+    - name: 'Build image 💿'
       run: |-
         gcloud builds submit \
           --quiet \
           --tag "gcr.io/$PROJECT_ID/$SERVICE"
 
-    - name: 'Deploy service 🛠'
+    - name: 'Deploy service 🏗'
       id: 'deploy'
       uses: 'google-github-actions/deploy-cloudrun@v0'
       with:
