@@ -9,9 +9,8 @@ steps:
             '--cache-from', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
             '.'
         ]
-- name: 'r-server'
-  entrypoint: 'RScript'
-  args: ['-e', 'server.R']
+- name: 'rocker/r-base'
+  args: ['R', 'server.R']
 images: ['gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
 options:
   substitutionOption: ALLOW_LOOSE
