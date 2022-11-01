@@ -25,8 +25,6 @@ RUN apt-get update -qq \
     && apt-get install \
        wget \
        libz-dev \
-    && add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" \
-       sudo apt-get install libicu55 \
     && wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz \
     && tar -xvzf geckodriver* \
     && chmod +x geckodriver
