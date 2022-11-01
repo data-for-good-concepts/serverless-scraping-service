@@ -35,9 +35,9 @@ RUN apt-get update --quiet \
 COPY ./renv.lock .
 RUN R -e "renv::restore()"
 
-RUN ls
-
 COPY . .
+
+RUN R -e "cat(list.files(all.files = T, full.names = T))"
 
 EXPOSE 8080
 
