@@ -10,7 +10,7 @@ steps:
             '.'
         ]
 - name: 'rocker/r-base'
-  args: ['R', 'server.R']
+  args: ['R', '-e', 'source(server.R)']
 images: ['gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
 options:
   substitutionOption: ALLOW_LOOSE
