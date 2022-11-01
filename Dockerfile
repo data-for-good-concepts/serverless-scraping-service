@@ -17,7 +17,7 @@ WORKDIR /usr/scraper
 
 # Install required dependencies
 RUN apt-get update --quiet \
-    && apt-get --assume-yes \
+    && apt-get install --assume-yes \
        libxml2-dev \
        default-jdk \
        firefox \
