@@ -5,14 +5,11 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [
             'build',
-            '--tag', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA',
             '--tag', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
             '--cache-from', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
             '.'
         ]
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/_SERVICE_NAME:latest']
-images: ['gcr.io/$PROJECT_ID/test:latest']
+images: ['gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
 options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
