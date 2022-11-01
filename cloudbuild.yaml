@@ -1,21 +1,30 @@
 steps:
+
 # Pull latest available container image
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
   args: ['-c', 'docker pull gcr.io/$PROJECT_ID/eurostat-scraper:latest || exit 0']
+
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
   args: [
-            'build',
-            '-t', 'gcr.io/$PROJECT_ID/eurostat-scraper:latest',
-            '--cache-from', 'gcr.io/$PROJECT_ID/eurostat-scraper:latest',
-            '.'
+          'build',
+          '-t', 'gcr.io/$PROJECT_ID/eurostat-scraper:latest',
+          '--cache-from', 'gcr.io/$PROJECT_ID/eurostat-scraper:latest',
+          '.'
         ]
+
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/data-for-good-concepts/eurostat-scraper']
+
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'eurostat-scraper', '--image', 'gcr.io/data-for-good-concepts/eurostat-scraper', '--region', 'europe-west1']
+  args: [
+          'run', 'deploy', 'eurostat-scraper',
+          '--image', 'gcr.io/data-for-good-concepts/eurostat-scraper',
+          '--region', 'europe-west1'
+        ]
+
 images: ['gcr.io/$PROJECT_ID/eurostat-scraper:latest']
