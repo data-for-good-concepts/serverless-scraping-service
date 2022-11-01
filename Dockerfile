@@ -35,6 +35,8 @@ RUN apt-get update --quiet \
 COPY ./renv.lock .
 RUN R -e "renv::restore()"
 
+RUN ls
+
 COPY . .
 
 EXPOSE 8080
