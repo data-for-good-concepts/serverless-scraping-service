@@ -9,7 +9,7 @@ steps:
             '--cache-from', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
             '.'
         ]
-- name: 'Server R Script '
+- name: 'r-server'
   entrypoint: 'RScript'
   args: ['-e', 'server.R']
 images: ['gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
