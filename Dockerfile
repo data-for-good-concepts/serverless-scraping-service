@@ -25,6 +25,7 @@ RUN apt-get update -qq \
     && apt-get install \
        wget \
        libz-dev \
+       libicu-dev \
     && wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz \
     && tar -xvzf geckodriver* \
     && chmod +x geckodriver
