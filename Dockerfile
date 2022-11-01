@@ -16,15 +16,13 @@ RUN R -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"
 WORKDIR /usr/scraper
 
 # Install required dependencies
-RUN apt-get update -qq \
-    && apt-get -y --no-install-recommends install \
+RUN apt-get update --quiet \
+    && apt-get -–install-suggests --assume-yes \
        libxml2-dev \
        default-jdk \
        firefox \
-    && apt-get install -y \
        libcurl4-openssl-dev \
        libicu-dev \
-    && apt-get install \
        wget \
        libz-dev \
     && wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz \
