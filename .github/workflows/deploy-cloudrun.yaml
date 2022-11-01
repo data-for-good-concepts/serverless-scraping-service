@@ -27,7 +27,6 @@ jobs:
       run: |-
         gcloud builds submit --config cloudbuild.yaml .
 
-
     - name: 'Deploy service 🏗'
       id: 'deploy'
       uses: 'google-github-actions/deploy-cloudrun@v0'
