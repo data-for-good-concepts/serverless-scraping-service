@@ -17,7 +17,7 @@ WORKDIR /usr/scraper
 
 # Install required linux dependencies
 RUN apt-get update --quiet \
- && apt-get install --no-install-recommends \
+ && apt-get install --no-install-recommends --assume-yes \
             libxml2-dev \
             default-jdk \
             firefox \
@@ -28,9 +28,6 @@ RUN apt-get update --quiet \
  && wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz \
  && tar -xvzf geckodriver* \
  && chmod +x geckodriver
-
-# Install devtools and CRAN version httpuv so that we have dependencies
-RUN R -e "install.packages(c('devtools', 'httpuv'))"
 
 COPY . .
 
