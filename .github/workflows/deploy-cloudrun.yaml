@@ -33,9 +33,9 @@ jobs:
       id: 'deploy'
       uses: 'google-github-actions/deploy-cloudrun@v0'
       with:
-        service: '$SERVICE'
-        image: 'gcr.io/$PROJECT_ID/$SERVICE:latest'
-        region: '$REGION'
+        service: '${{ env.SERVICE }}'
+        image: 'gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:latest'
+        region: '${{ env.REGION }}'
 
     - name: 'Make service public 🌎'
       run: |
