@@ -19,10 +19,11 @@ WORKDIR /usr/scraper
 RUN apt-get update --quiet \
  && apt-get install --no-install-recommends --assume-yes \
             libxml2-dev \
+            libcurl4-openssl-dev \
+            libz-dev \
             default-jdk \
             firefox \
             wget \
-            libz-dev \
     \
  # Install geckodriver for Firefox
  && wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz \
