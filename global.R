@@ -5,6 +5,7 @@ source("packages.R")
 # Get environment variables -----------------------------------------------
 
 PORT <- Sys.getenv('PORT')
+cat(PORT)
 
 # Initialise functions ----------------------------------------------------
 
