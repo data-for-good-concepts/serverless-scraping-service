@@ -5,4 +5,4 @@ pr() %>%
     path   = "api/v1/health",
     router = pr("routes/v1/health.R")
   ) %>%
-  pr_run(port = PORT, host = "0.0.0.0")
+  pr_run(port = 8080, host = "0.0.0.0")
