@@ -16,7 +16,7 @@ steps:
 
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/data-for-good-concepts/eurostat-scraper']
+  args: ['push', 'gcr.io/data-for-good-concepts/eurostat-scraper:latest']
 
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
