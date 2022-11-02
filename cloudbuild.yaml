@@ -24,7 +24,7 @@ steps:
   args: [
           'run', 'deploy', 'eurostat-scraper',
           '--image', 'gcr.io/data-for-good-concepts/eurostat-scraper',
-          '--region', 'europe-west1'
+          '--region', 'europe-west1',
           '--memory', '1Gi',
           '--allow-unauthenticated'
         ]
