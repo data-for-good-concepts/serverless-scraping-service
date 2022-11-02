@@ -1,0 +1,32 @@
+name: deploy-cloudrun
+on:
+  push:
+    branches:
+      - 'main'
+
+env:
+  SERVICE: 'eurostat-scraper'
+  PROJECT_ID: 'data-for-good-concepts'
+  REGION: 'europe-west1'
+
+jobs:
+  deploy-scraping-service:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name: 'Checkout 🛎'
+      uses: 'actions/checkout@main'
+
+    - name: 'Authenticate GCP 🔐'
+      id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GC_SA_ADMNIN_KEY }}'
+
+    - name: 'Set up Cloud SDK 🌥'
+      uses: 'google-github-actions/setup-gcloud@v0'
+
+    - name: 'Build image 💿'
+      run: |-
+        gcloud builds submit \
+          --region='${{ env.REGION }}'

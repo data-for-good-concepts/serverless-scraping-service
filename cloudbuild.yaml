@@ -1,0 +1,38 @@
+steps:
+
+# Pull latest available container image
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest || exit 0']
+
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+          'build',
+          '-t', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
+          '--cache-from', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
+          '.'
+        ]
+
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
+
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: [
+          'run', 'deploy', '$_SERVICE_NAME',
+          '--image', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME',
+          '--region', 'europe-west1',
+          '--memory', '1Gi',
+          '--allow-unauthenticated'
+        ]
+
+timeout: 1800s
+images: ['gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
+
+options:
+  substitutionOption: ALLOW_LOOSE
+substitutions:
+  _SERVICE_NAME: 'eurostat-scraper'
