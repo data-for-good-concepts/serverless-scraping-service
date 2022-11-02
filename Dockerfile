@@ -32,12 +32,14 @@ RUN apt-get update --quiet \
  && chmod +x geckodriver
 
 # Install R package dependencies
-COPY . .
+COPY renv.lock renv.lock
+COPY renv/activate.R renv/activate.R
+COPY .Rprofile .Rprofile
 RUN R -e "renv::restore()"
 
-RUN R -e "list.files(all.files = T, full.names = T)"
+COPY src src
 
 EXPOSE 8080
 
 ENTRYPOINT ["Rscript"]
-CMD ["server.R"]
+CMD ["src/server.R"]
