@@ -67,6 +67,9 @@ source('src/server.R')
 
 #### Deployment
 
+- [ ] Service account creation + permissions
+- [ ] Enable APIs (Cloud Build, Cloud Run)
+
 Replace `<REGION>` with the [Google Cloud region](https://cloud.google.com/compute/docs/regions-zones), you want to use 
 for the deployment of your web service.
 
