@@ -78,4 +78,15 @@ gcloud builds submit --region='<REGION>'
 
 ### Usage
 
-### Code of Conduct
+Replace `<URL>` with `localhost:8080` when you want to run the scraping
+service locally.
+
+``` bash
+curl --location --request POST '<URL>/api/v1/scraper/job'
+```
+
+------------------------------------------------------------------------
+
+Please note that this project is released with a [Contributor Code of
+Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
+to abide by its terms.
