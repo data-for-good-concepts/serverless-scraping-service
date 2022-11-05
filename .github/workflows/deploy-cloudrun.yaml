@@ -2,7 +2,7 @@ name: deploy-cloudrun
 on:
   push:
     branches:
-      - 'dev'
+      - 'main'
 
 env:
   SERVICE: 'eurostat-scraper'
