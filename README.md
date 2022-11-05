@@ -16,7 +16,10 @@ experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimenta
 > subject to constant change.*
 
 The **Eurostat Scraper** is a working example on how to wrap a web
-scraper in a web service and deploy it on the cloud.
+scraper in a web service and deploy it on the cloud using R. This
+project aims to showcase different aspects when it comes to web scraping
+in general, as well as providing an example how a web scraper can be
+deployed as a web service on the cloud.
 
 ### Prerequisites
 
