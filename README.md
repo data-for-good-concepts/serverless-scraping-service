@@ -78,8 +78,21 @@ gcloud builds submit --region='<REGION>'
 
 ### Usage
 
-Replace `<URL>` with `localhost:8080` when you want to run the scraping
-service locally.
+#### Localhost
+
+When you are running the scraping service locally, make sure you start
+web service executing following command in your R console.
+
+``` r
+source('src/server.R')
+```
+
+#### Trigger default scraping job
+
+Start scraping job making a `POST` request to the trigger endpoint. When
+you are working locally, replace `<URL>` with `localhost:8080`. When you
+have the web service deployed on Google Cloud Run, use the public URL of
+your Cloud Run service.
 
 ``` bash
 curl --location --request POST '<URL>/api/v1/scraper/job'
