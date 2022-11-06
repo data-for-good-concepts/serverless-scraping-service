@@ -9,6 +9,7 @@ pacman::p_load(
   "logger",
   "purrr",
   "tidyr",
+  "stringr",
   "glue",
   "here",
   "RSelenium"

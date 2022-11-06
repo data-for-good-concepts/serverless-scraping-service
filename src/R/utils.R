@@ -28,7 +28,7 @@
         if(element_found) break; Sys.sleep(2);
         if(difftime(Sys.time(), wait_start) > timeout) stop("time_out")
       }
-      if(!is.null(fn())) fn()
+      if(!is.null(fn)) {fn(); .util_delay_web_interaction(1);}
     },
     error = function(e){
       error_message <- switch(
@@ -42,7 +42,7 @@
     }
   )
 
-  invisible()
+  invisible(element_target)
 }
 
 
