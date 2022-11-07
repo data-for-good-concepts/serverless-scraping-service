@@ -17,5 +17,3 @@ jobs:
 
       - name: 'Build Docker image 💿'
         uses: 'docker/build-push-action@v2'
-        with:
-          push: false
