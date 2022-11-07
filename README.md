@@ -36,61 +36,6 @@ Following tools and technologies will be highlighted or are heavily in
 use as part of this example - `RSelenium`, `plumber`, `Docker`,
 `Google Cloud Build`, `Google Cloud Run` and `GitHub Actions`.
 
-### Prerequisites
-
-Before you get started, make sure you are familiar with the following
-packages and tools.
-
-#### Development
-
-Apart from R packages that are very commen (e.g. tidyverse, etc.) this
-project heavily relies on the following two packages.
-
-- [RSelenium](https://docs.ropensci.org/RSelenium/)  
-- [plumber](https://www.rplumber.io/)
-
-Please make yourself familiar with these packages, as it will be a lot
-easier to understand the code, once you know what these packages do and
-how they work.
-
-#### Production
-
-In order to run this web service on Google Cloud, please make sure you
-have a [Google Cloud Account](https://cloud.google.com/) and that you
-are familiar with the tools that we will use for deployment.
-
-- [Docker](https://docker-curriculum.com/)  
-- [GitHub
-  Actions](https://github.blog/2022-06-03-a-beginners-guide-to-ci-cd-and-automation-on-github/)
-- [gcloud CL](https://cloud.google.com/sdk/gcloud)  
-- [Google Cloud Service
-  Account](https://cloud.google.com/iam/docs/service-accounts)  
-- [Google Cloud
-  Build](https://cloud.google.com/build/docs/overview#:~:text=Cloud%20Build%20is%20a%20service,Docker%20containers%20or%20Java%20archives.)  
-- [Google Cloud
-  Run](https://cloud.google.com/run/docs/overview/what-is-cloud-run)
-
-### Getting started
-
-#### Development
-
-``` r
-source('src/server.R')
-```
-
-#### Deployment
-
-- [ ] Service account creation + permissions
-- [ ] Enable APIs (Cloud Build, Cloud Run)
-
-Replace `<REGION>` with the [Google Cloud
-region](https://cloud.google.com/compute/docs/regions-zones), you want
-to use for the deployment of your web service.
-
-``` bash
-gcloud builds submit --region='<REGION>'
-```
-
 ### Usage
 
 #### Localhost
@@ -111,6 +56,45 @@ your Cloud Run service.
 
 ``` bash
 curl --location --request POST '<URL>/api/v1/scraper/job'
+```
+
+### Deployment
+
+### Prerequisites
+
+Before you get started, make sure you are familiar with the following
+packages and tools.
+
+In order to run this web service on Google Cloud, please make sure you
+have a [Google Cloud Account](https://cloud.google.com/) and that you
+are familiar with the tools that we will use for deployment.
+
+- [Docker](https://docker-curriculum.com/)  
+
+- [GitHub
+  Actions](https://github.blog/2022-06-03-a-beginners-guide-to-ci-cd-and-automation-on-github/)
+
+- [gcloud CL](https://cloud.google.com/sdk/gcloud)  
+
+- [Google Cloud Service
+  Account](https://cloud.google.com/iam/docs/service-accounts)  
+
+- [Google Cloud
+  Build](https://cloud.google.com/build/docs/overview#:~:text=Cloud%20Build%20is%20a%20service,Docker%20containers%20or%20Java%20archives.)  
+
+- [Google Cloud
+  Run](https://cloud.google.com/run/docs/overview/what-is-cloud-run)
+
+- [ ] Service account creation + permissions
+
+- [ ] Enable APIs (Cloud Build, Cloud Run)
+
+Replace `<REGION>` with the [Google Cloud
+region](https://cloud.google.com/compute/docs/regions-zones), you want
+to use for the deployment of your web service.
+
+``` bash
+gcloud builds submit --region='<REGION>'
 ```
 
 ------------------------------------------------------------------------
