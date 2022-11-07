@@ -1,11 +1,11 @@
-name: Dry-run Docker Build
+name: build
 on:
   push:
     branches:
       - '5-setup-static-scraping-workflow'
 
 jobs:
-  build:
+  dry-run-docker-build:
     runs-on: 'ubuntu-latest'
 
     steps:
