@@ -26,10 +26,11 @@ This example scrapes the *‘Asylum applicants by type of applicant,
 citizenship, age and sex - monthly data’* from the [**Eurostat Data
 Browser**](https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en).
 The scraper can be triggered by a `POST` request to the API endpoint in
-which the scraper is wrapped around. Even though this example has been
-developed to scrape one particular dataset, any other dataset that is
-available in the **Eurostat Data Browser** can be scraped with little to
-no adjustments.
+which the scraper is wrapped in, and it returns the scraped data as part
+of the `response` object. Even though this example has been developed to
+scrape one particular dataset, any other dataset that is available as
+part of the **Eurostat Data Browser** can be scraped with little to no
+adjustments.
 
 Following tools and technologies will be highlighted or are heavily in
 use as part of this example - `RSelenium`, `plumber`, `Docker`,
