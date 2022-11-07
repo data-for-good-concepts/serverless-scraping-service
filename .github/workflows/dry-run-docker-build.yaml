@@ -13,8 +13,4 @@ jobs:
         uses: 'actions/checkout@v3'
 
       - name: 'Build and push Docker image 💿'
-        uses: 'docker/build-push-action@v3'
-        with:
-          context: '.'
-          cache-from: 'type=gha'
-          cache-to: type=gha,mode=max
+        uses: 'docker/setup-buildx-action@v2'
