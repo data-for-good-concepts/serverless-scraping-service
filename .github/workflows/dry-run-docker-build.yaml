@@ -1,0 +1,20 @@
+name: Dry-Run Docker Build
+on:
+  push:
+    branches:
+      - '5-setup-static-scraping-workflow'
+
+jobs:
+  dry-run-docker-build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - name: 'Checkout repository 🛎'
+        uses: 'actions/checkout@v3'
+
+      - name: 'Build and push Docker image 💿'
+        uses: 'docker/build-push-action@v3'
+        with:
+          context: '.'
+          cache-from: 'type=gha'
+          cache-to: type=gha,mode=max
