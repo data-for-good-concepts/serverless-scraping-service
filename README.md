@@ -19,8 +19,21 @@ experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimenta
 The **Eurostat Scraper** is a working example on how to wrap a web
 scraper in a web service and deploy it on the cloud using R. This
 project aims to showcase different aspects when it comes to web scraping
-in general, as well as providing an example how a web scraper can be
-deployed as a web service on the cloud.
+in general, as well as different technologies when deploying your work
+in production.
+
+This example scrapes the *‘Asylum applicants by type of applicant,
+citizenship, age and sex - monthly data’* from the [**Eurostat Data
+Browser**](https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en).
+The scraper can be triggered by a `POST` request to the API endpoint in
+which the scraper is wrapped around. Even though this example has been
+developed to scrape one particular dataset, any other dataset that is
+available in the **Eurostat Data Browser** can be scraped with little to
+no adjustments.
+
+Following tools and technologies will be highlighted or are heavily in
+use as part of this example - `RSelenium`, `plumber`, `Docker`,
+`Google Cloud Build`, `Google Cloud Run` and `GitHub Actions`.
 
 ### Prerequisites
 
