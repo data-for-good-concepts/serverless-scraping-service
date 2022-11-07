@@ -19,6 +19,7 @@ WORKDIR /usr/scraper
 RUN apt-get update --quiet \
  && apt-get install --no-install-recommends --assume-yes \
             libxml2-dev \
+            libssl-dev \
             libcurl4-openssl-dev \
             libsodium-dev \
             libz-dev \
