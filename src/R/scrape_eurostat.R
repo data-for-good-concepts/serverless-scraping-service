@@ -10,7 +10,7 @@ scrape_eurostat <- function(url) {
   response <- NULL
   tryCatch(
     expr = {
-      client <- rmDr_launch_browser()
+      client <- rmDr_launch_browser(env = R_ENV)
       remDr  <- client$remDr
       rD     <- client$rD
 
