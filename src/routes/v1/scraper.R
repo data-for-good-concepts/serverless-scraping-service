@@ -8,7 +8,7 @@ function(req, res){
 
   job <- scrape_eurostat(url)
 
-  #' Only error objects are returned as `list`
+  #' Scraped data should always be a `tibble`
   if(!is_tibble(job)) {
     res$status <- job$status %||% '500'
     res$body   <- job$body %||% 'Data request failed. Please try again later.'
