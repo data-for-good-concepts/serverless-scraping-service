@@ -13,6 +13,8 @@ scrape_eurostat <- function(url) {
       client <- rmDr_launch_browser()
       remDr  <- client$remDr
       rD     <- client$rD
+
+      remDr$setTimeout(type = "implicit", milliseconds = 5000)
       log_success('Launched Firefox browser')
 
       rmDr_navigate_to_url(remDr, url)
@@ -23,6 +25,9 @@ scrape_eurostat <- function(url) {
 
       eurostat_create_custom_extraction(remDr, user_customization)
       log_success('Custom extraction created')
+
+      response <- eurostat_download_dataset(remDr)
+      log_success('Data successfully downloaded')
     },
     error = function(e){
       response <<- list(status = 503, body = e$message)

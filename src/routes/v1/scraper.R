@@ -7,10 +7,14 @@ function(req, res){
   url <- 'https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en'
 
   job <- scrape_eurostat(url)
-  if(!is.null(job)) {
-    res$status <- job$status
-    res$body   <- job$body
+
+  #' Only error objects are returned as `list`
+  if(!is_tibble(job)) {
+    res$status <- job$status %||% '500'
+    res$body   <- job$body %||% 'Data request failed. Please try again later.'
+
+    return(res)
   }
 
-  return(res)
+  return(job)
 }
