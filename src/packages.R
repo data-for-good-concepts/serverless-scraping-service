@@ -12,5 +12,8 @@ pacman::p_load(
   "stringr",
   "glue",
   "here",
-  "RSelenium"
+  "RSelenium",
+  "httr",
+  "readr",
+  "tibble"
   )
