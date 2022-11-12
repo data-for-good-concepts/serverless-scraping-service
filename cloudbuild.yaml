@@ -34,6 +34,5 @@ images: ['gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
 
 options:
   substitutionOption: ALLOW_LOOSE
-  logging: CLOUD_LOGGING_ONLY
 substitutions:
   _SERVICE_NAME: 'eurostat-scraper'
