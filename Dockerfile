@@ -38,6 +38,9 @@ COPY renv/activate.R renv/activate.R
 COPY .Rprofile .Rprofile
 RUN R -e "renv::restore()"
 
+# Remove unused files
+RUN rm geckodriver-v0.32.0-linux64.tar.gz
+
 COPY src/ ./
 
 EXPOSE 8080
