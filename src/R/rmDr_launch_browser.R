@@ -10,28 +10,25 @@
 #' A `list` containing a server and a client. The server is the object returned
 #' by selenium and the client is an object of class remoteDriver.
 #'
-rmDr_launch_browser <- function(env = "development") {
-
-  .test <- function(env){
-    logger::log_info(env)
-    rsDriver(
-      browser    = "firefox",
-      chromever  = NULL,
-      geckover   = NULL,
-      iedrver    = NULL,
-      phantomver = NULL,
-      extraCapabilities = list("moz:firefoxOptions" = firefox_option)
-    )
-  }
+rmDr_launch_browser <- function(env) {
 
   firefox_option <- list(args = list('--headless'))
+  options        <- list("moz:firefoxOptions" = firefox_option)
+
   rD <- switch(
     env,
-    "development" = rsDriver(
+    "production" = rsDriver(
+                     browser    = "firefox",
+                     chromever  = NULL,
+                     geckover   = NULL,
+                     iedrver    = NULL,
+                     phantomver = NULL,
+                     extraCapabilities = options
+                   ),
+    rsDriver(
       browser = "firefox",
       port    = 4553L
-    ),
-    .test(env)
+    )
   )
 
   remDr <- rD$client
