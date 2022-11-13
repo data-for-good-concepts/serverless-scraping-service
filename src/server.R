@@ -1,6 +1,7 @@
 #' In `production` the `.src/` folder moves to root
 if(Sys.getenv("R_ENV") == 'developmment') setwd(here::here('src'))
 
+
 # -------------------------------------------------------------------------
 
 source("global.R")
