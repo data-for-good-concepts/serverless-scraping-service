@@ -38,7 +38,7 @@ COPY renv/activate.R renv/activate.R
 COPY .Rprofile .Rprofile
 RUN R -e "renv::restore()"
 
-COPY src/* .
+COPY src/* ./
 
 EXPOSE 8080
 
