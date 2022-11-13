@@ -38,64 +38,86 @@ use as part of this example - `RSelenium`, `plumber`, `Docker`,
 
 ### Usage
 
-#### Localhost
-
-When you are running the scraping service locally, make sure you start
-web service executing following command in your R console.
+In case you are running the scraping service locally, make sure you
+start the web service by executing following command in your R console.
 
 ``` r
 source('src/server.R')
 ```
 
-#### Trigger default scraping job
+#### Trigger scraping job
 
-Start scraping job making a `POST` request to the trigger endpoint. When
-you are working locally, replace `<URL>` with `localhost:8080`. When you
-have the web service deployed on Google Cloud Run, use the public URL of
-your Cloud Run service.
+Start a scraping job by making a `POST` request to the trigger endpoint.
+When you are working locally, replace `<URL>` with `localhost:8080`.
+When you have the web service deployed on Google Cloud Run, use your
+Cloud Run service URL.
 
 ``` bash
 curl --location --request POST '<URL>/api/v1/scraper/job'
 ```
 
+As a response the scraping service will return the requested dataset as
+`JSON`.
+
+``` js
+[
+    {
+        "DATAFLOW": "ESTAT:MIGR_ASYAPPCTZM(1.0)",
+        "LAST UPDATE": "11/11/22 23:00:00",
+        "freq": "M",
+        "unit": "PER",
+        "citizen": "UA",
+        "sex": true,
+        "age": "Y14-17",
+        "asyl_app": "ASY_APP",
+        "geo": "AT",
+        "TIME_PERIOD": "2021-12",
+        "OBS_VALUE": 0
+    },
+    {
+        "DATAFLOW": "ESTAT:MIGR_ASYAPPCTZM(1.0)",
+        "LAST UPDATE": "11/11/22 23:00:00",
+        "freq": "M",
+        "unit": "PER",
+        "citizen": "UA",
+        "sex": true,
+        "age": "Y14-17",
+        "asyl_app": "ASY_APP",
+        "geo": "AT",
+        "TIME_PERIOD": "2022-01",
+        "OBS_VALUE": 0
+    },
+    ...
+]
+```
+
 ### Deployment
 
-### Prerequisites
-
-Before you get started, make sure you are familiar with the following
-packages and tools.
-
 In order to run this web service on Google Cloud, please make sure you
-have a [Google Cloud Account](https://cloud.google.com/) and that you
-are familiar with the tools that we will use for deployment.
+have a [Google Cloud Account](https://cloud.google.com/) and have the
+[`Cloud Build API`](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com)
+and the
+[`Cloud Run API`](https://console.cloud.google.com/apis/library/run.googleapis.com)
+enabled. In order to deploy this service from the command line, will
+further need to install the
+[`gcloud CLI`](https://cloud.google.com/sdk/docs/install).
 
-- [Docker](https://docker-curriculum.com/)  
+> *⚠️ Documentation on IAM permissions need to be added. Further
+> documentation on Service Account usage and permissions is currently
+> missing.*
 
-- [GitHub
-  Actions](https://github.blog/2022-06-03-a-beginners-guide-to-ci-cd-and-automation-on-github/)
-
-- [gcloud CL](https://cloud.google.com/sdk/gcloud)  
-
-- [Google Cloud Service
-  Account](https://cloud.google.com/iam/docs/service-accounts)  
-
-- [Google Cloud
-  Build](https://cloud.google.com/build/docs/overview#:~:text=Cloud%20Build%20is%20a%20service,Docker%20containers%20or%20Java%20archives.)  
-
-- [Google Cloud
-  Run](https://cloud.google.com/run/docs/overview/what-is-cloud-run)
-
-- [ ] Service account creation + permissions
-
-- [ ] Enable APIs (Cloud Build, Cloud Run)
-
-Replace `<REGION>` with the [Google Cloud
+You can deploy this service on Google Cloud by executing the following
+command in the command line. Make sure to replace `<REGION>` with the
+[Google Cloud
 region](https://cloud.google.com/compute/docs/regions-zones), you want
 to use for the deployment of your web service.
 
 ``` bash
 gcloud builds submit --region='<REGION>'
 ```
+
+In case you want to modify deployment parameters, feel free to adjust
+the `cloudbuild.yaml` according to your needs.
 
 ------------------------------------------------------------------------
 
