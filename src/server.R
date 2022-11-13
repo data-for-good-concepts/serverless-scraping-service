@@ -1,5 +1,5 @@
 #' In `production` the `.src/` folder moves to root
-if(R_ENV == 'developmment') setwd(here::here('src'))
+if(Sys.getenv("R_ENV") == 'developmment') setwd(here::here('src'))
 
 # -------------------------------------------------------------------------
 
