@@ -34,8 +34,6 @@ RUN apt-get update --quiet \
 
 # Install R package dependencies
 COPY renv.lock renv.lock
-COPY renv/activate.R renv/activate.R
-COPY .Rprofile .Rprofile
 RUN R -e "renv::restore()"
 
 # Remove unused files
