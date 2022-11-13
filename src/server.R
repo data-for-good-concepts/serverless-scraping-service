@@ -1,7 +1,5 @@
-#" Change working directory to '/src', as the root directory contains
-#' deployment related files.
-server_wd <- endsWith(getwd(), '/src')
-if(!server_wd) setwd(here::here('src'))
+#' In `production` the `.src/` folder moves to root
+if(R_ENV == 'developmment') setwd(here::here('src'))
 
 # -------------------------------------------------------------------------
 
