@@ -38,9 +38,9 @@ COPY renv/activate.R renv/activate.R
 COPY .Rprofile .Rprofile
 RUN R -e "renv::restore()"
 
-COPY src src
+COPY src/* .
 
 EXPOSE 8080
 
 ENTRYPOINT ["Rscript"]
-CMD ["src/server.R"]
+CMD ["server.R"]
