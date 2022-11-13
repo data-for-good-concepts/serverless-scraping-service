@@ -1,6 +1,6 @@
 #' In `production` the `.src/` folder moves to root
+logger::log_info(Sys.getenv("R_ENV"))
 if(Sys.getenv("R_ENV") == 'developmment') setwd(here::here('src'))
-
 
 # -------------------------------------------------------------------------
 
