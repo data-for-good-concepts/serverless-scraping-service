@@ -38,6 +38,8 @@ COPY renv/activate.R renv/activate.R
 COPY .Rprofile .Rprofile
 RUN R -e "renv::restore()"
 
+RUN R -e "list.files(full.names = T)"
+
 COPY src/ ./
 
 RUN R -e "list.files(full.names = T)"
