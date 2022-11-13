@@ -40,6 +40,8 @@ RUN R -e "renv::restore()"
 
 COPY src/* ./
 
+RUN R -e "ist.files(full.names = T)"
+
 EXPOSE 8080
 
 ENTRYPOINT ["Rscript"]
