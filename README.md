@@ -93,13 +93,14 @@ As a response the scraping service will return the requested dataset as
 
 ### Deployment
 
-In order to run this web service on Google Cloud, please make sure you
-have a [Google Cloud Account](https://cloud.google.com/) and have the
+In order to deploy this web service on Google Cloud, please make sure
+you have a [Google Cloud Account](https://cloud.google.com/). Create a
+project within your account and enable the
 [`Cloud Build API`](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com)
-and the
-[`Cloud Run API`](https://console.cloud.google.com/apis/library/run.googleapis.com)
-enabled. In order to deploy this service from the command line, will
-further need to install the
+as well as the
+[`Cloud Run API`](https://console.cloud.google.com/apis/library/run.googleapis.com).
+In order to deploy this service from the command line, you will further
+need to install the
 [`gcloud CLI`](https://cloud.google.com/sdk/docs/install).
 
 > *⚠️ Documentation on IAM permissions need to be added. Further
