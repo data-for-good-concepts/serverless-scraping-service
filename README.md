@@ -115,9 +115,8 @@ As a response the scraping service will return the requested dataset as
 
 ## Deployment
 
-The following steps will walk you through the steps to create a
-[`build`](https://en.wikipedia.org/wiki/Software_build) of this project
-using
+The following steps will walk you through the steps to create a `build`
+of this project using
 [`Google Cloud Build`](https://cloud.google.com/build/docs/overview#:~:text=Cloud%20Build%20is%20a%20service,Docker%20containers%20or%20Java%20archives.)
 and then deploy it on
 [`Google Cloud Run`](https://cloud.google.com/run/docs/overview/what-is-cloud-run).
