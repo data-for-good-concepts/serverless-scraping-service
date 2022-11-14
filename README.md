@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Eurostat Scraper <img src="man/figures/logo.png" align="right" height="139"/>
+# Eurostat Scraper Web Service<img src="man/figures/logo.png" align="right" height="139"/>
 
 <!-- badges: start -->
 
@@ -16,32 +16,54 @@ experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimenta
 > **Work In Progress**. The description might be incomplete and is
 > subject to constant change.*
 
+This example scrapes the *‘Asylum applicants by type of applicant,
+citizenship, age and sex - monthly data’* from the [**Eurostat Data
+Browser**](https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en).
+The scraper can be triggered with a `POST` request to an API endpoint,
+which returns the scraped data as the `response`. Even though this
+example has been developed to scrape one particular dataset, any other
+dataset that is available as part of the **Eurostat Data Browser** can
+be scraped with little to no adjustments.
+
 The **Eurostat Scraper** is a working example on how to wrap a web
 scraper in a web service and deploy it on the cloud using R. This
 project aims to showcase different aspects when it comes to web scraping
 in general, as well as different technologies when deploying your work
 in production.
 
-This example scrapes the *‘Asylum applicants by type of applicant,
-citizenship, age and sex - monthly data’* from the [**Eurostat Data
-Browser**](https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en).
-The scraper can be triggered by a `POST` request to the API endpoint in
-which the scraper is wrapped in, and it returns the scraped data as part
-of the `response` object. Even though this example has been developed to
-scrape one particular dataset, any other dataset that is available as
-part of the **Eurostat Data Browser** can be scraped with little to no
-adjustments.
+All this might sound good to you and you probably still wonder, why wrap
+a scraper in a web service? The reason is, having your application
+wrapped in a web service makes it accessible, easy to interact and easy
+to intergrate into other applications. You can communicate with this
+application through a `REST` API, which is possible using any modern
+programming language.
 
-Following tools and technologies will be highlighted or are heavily in
-use as part of this example - `RSelenium`, `plumber`, `Docker`,
-`Google Cloud Build`, `Google Cloud Run` and `GitHub Actions`.
+## Getting Started
+
+### Prerequisites
+
+- [Firefox](https://www.mozilla.org/)  
+- [gcloud CLI](https://cloud.google.com/sdk/docs/install)
+
+When running this project locally, make sure to have a `Firefox` client
+installed on your machine. In order to deploy this web service on Google
+Cloud from the terminal, you will also need to install the `gcloud CLI`.
+When using a depolyed version of this project, you don’t need to worry
+about the `Firefox` client, as it will be installed as part of the
+`Docker` image.
+
+Further, following tools and technologies will be highlighted or are
+heavily in use as part of this example - `RSelenium`, `plumber`,
+`Docker`, `Google Cloud Build`, `Google Cloud Run` and `GitHub Actions`.
 
 ### Usage
 
-In case you are running the scraping service locally, make sure you
-start the web service by executing following command in your R console.
+In order to launch the scraping service locally, install the necessary
+dependencies and start the web service by executing following commands
+in your R console.
 
 ``` r
+renv::restore()
 source('src/server.R')
 ```
 
@@ -91,7 +113,7 @@ As a response the scraping service will return the requested dataset as
 ]
 ```
 
-### Deployment
+## Deployment
 
 In order to deploy this web service on Google Cloud, please make sure
 you have a [Google Cloud Account](https://cloud.google.com/). Create a
@@ -103,9 +125,14 @@ In order to deploy this service from the command line, you will further
 need to install the
 [`gcloud CLI`](https://cloud.google.com/sdk/docs/install).
 
+In case you want to modify deployment parameters, feel free to adjust
+the `cloudbuild.yaml` according to your needs.
+
 > *⚠️ Documentation on IAM permissions need to be added. Further
 > documentation on Service Account usage and permissions is currently
 > missing.*
+
+### Using the terminal
 
 You can deploy this service on Google Cloud by executing the following
 command in the command line. Make sure to replace `<REGION>` with the
@@ -117,8 +144,7 @@ to use for the deployment of your web service.
 gcloud builds submit --region='<REGION>'
 ```
 
-In case you want to modify deployment parameters, feel free to adjust
-the `cloudbuild.yaml` according to your needs.
+### Using GitHub Actions
 
 ------------------------------------------------------------------------
 
