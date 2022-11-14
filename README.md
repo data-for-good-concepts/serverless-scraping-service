@@ -38,9 +38,9 @@ to intergrate into other applications. You can communicate with this
 application through a `REST` API, which is possible using any modern
 programming language.
 
-### Getting Started
+## Getting Started
 
-#### Prerequisites
+### Prerequisites
 
 - [Firefox](https://www.mozilla.org/)  
 - [gcloud CLI](https://cloud.google.com/sdk/docs/install)
@@ -56,7 +56,7 @@ Further, following tools and technologies will be highlighted or are
 heavily in use as part of this example - `RSelenium`, `plumber`,
 `Docker`, `Google Cloud Build`, `Google Cloud Run` and `GitHub Actions`.
 
-#### Usage
+### Usage
 
 In order to launch the scraping service locally, install the necessary
 dependencies and start the web service by executing following commands
@@ -67,7 +67,7 @@ renv::restore()
 source('src/server.R')
 ```
 
-##### Trigger scraping job
+#### Trigger scraping job
 
 Start a scraping job by making a `POST` request to the trigger endpoint.
 When you are working locally, replace `<URL>` with `localhost:8080`.
@@ -113,7 +113,7 @@ As a response the scraping service will return the requested dataset as
 ]
 ```
 
-### Deployment
+## Deployment
 
 In order to run this web service on Google Cloud, please make sure you
 have a [Google Cloud Account](https://cloud.google.com/). Create a
@@ -132,7 +132,7 @@ the `cloudbuild.yaml` according to your needs.
 > documentation on Service Account usage and permissions is currently
 > missing.*
 
-#### Using the terminal
+### Using the terminal
 
 You can deploy this service on Google Cloud by executing the following
 command in the command line. Make sure to replace `<REGION>` with the
@@ -144,7 +144,7 @@ to use for the deployment of your web service.
 gcloud builds submit --region='<REGION>'
 ```
 
-#### Using GitHub Actions
+### Using GitHub Actions
 
 ------------------------------------------------------------------------
 
