@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-> _⚠️ Please note, that the documentation of this project is still 
+> ⚠️ _Please note, that the documentation of this project is still 
 **Work In Progress**. The description might be incomplete and is subject to 
 constant change._  
 
@@ -46,19 +46,26 @@ web service makes it accessible, easy to interact and easy to intergrate into
 other applications. You can communicate with this application through 
 a `REST` API, which is possible using any modern programming language.
 
+## Architecture
+
+<p align="center">
+  <img src="man/figures/architecture.png" width="85%" alt="scraper web service architecture"/>
+</p>
+
 ## Prerequisites
 
-- [Firefox](https://www.mozilla.org/)  
-- [gcloud CLI](https://cloud.google.com/sdk/docs/install)  
+- In order to run this service locally, you need to have a [Firefox](https://www.mozilla.org/) client installed on your machine.
+- In order to deploy this image on Google Cloud, you will need a [Google Cloud Account](https://cloud.google.com/) and a project.
+- You then also must [enable the Cloud Build API](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com)
+as well and [enable the Cloud Run API](https://console.cloud.google.com/apis/library/run.googleapis.com).
+- To deploy this service from the command line you need to install [gcloud CLI](https://cloud.google.com/sdk/docs/install).
+- To deploy this service using `GitHub Actions` you need to export `Service 
+Account` credentials. See [Using GitHub Actions](#using-github-actions) for more information.
 
-When running this project locally, make sure to have a `Firefox` client 
-installed on your machine. In order to deploy this web service on Google Cloud 
-from the terminal, you will also need to install the `gcloud CLI`. When using a
-depolyed version of this project, you don't need to worry about the `Firefox` 
-client, as it will be installed as part of the `Docker` image. 
-
+When using a depolyed version of this project, you don't need to worry about the
+`Firefox` client, as it will be installed as part of the `Docker` image. 
 Further, following tools and technologies will be highlighted or are heavily in
-use as part of this example - `RSelenium`, `plumber`, `Docker`,
+use as part of this concept - `RSelenium`, `plumber`, `Docker`,
 `Google Cloud Build`, `Google Cloud Run` and `GitHub Actions`.
 
 ## Usage
@@ -119,21 +126,14 @@ As a response the scraping service will return the requested dataset as `JSON`.
 
 ## Deployment
 
+> ℹ️️️️️ _Documentation on IAM permissions need to be added. Further documentation 
+on Service Account usage and permissions is currently missing._  
+
 The following steps will walk you through the steps to create a `build` of this 
 project using [`Google Cloud Build`](https://cloud.google.com/build/docs/overview#:~:text=Cloud%20Build%20is%20a%20service,Docker%20containers%20or%20Java%20archives.) and then deploy it on [`Google Cloud Run`](https://cloud.google.com/run/docs/overview/what-is-cloud-run).
 
-In order to deploy this web service on Google Cloud, please make sure you have a
-[Google Cloud Account](https://cloud.google.com/). Create a project within your 
-account and enable the [`Cloud Build API`](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com) 
-as well as the [`Cloud Run API`](https://console.cloud.google.com/apis/library/run.googleapis.com).
-To deploy this service from the command line, you will further
-need to install the [`gcloud CLI`](https://cloud.google.com/sdk/docs/install).
-
 In case you want to modify deployment parameters, feel free to adjust the 
 `cloudbuild.yaml` according to your needs.
-
-> _⚠️ Documentation on IAM permissions need to be added. Further documentation 
-on Service Account usage and permissions is currently missing._  
 
 ### Using the terminal
 
@@ -170,6 +170,34 @@ Docker images. Once the build is done, you will see your deployment on the
 [Cloud Run Overview](https://console.cloud.google.com/run).
 
 ### Using GitHub Actions
+
+The `GitHub Actions` workflow in this project is setup in a way, that with every 
+`push` to the `main` branch the `deploy-cloudrun` workflow will be triggered.
+That workflow will automatically build the image in `Cloud Build` and deploy it 
+on `Cloud Run`.
+
+```{yaml, eval=FALSE}
+name: deploy-cloudrun
+on:
+  push:
+    branches:
+      - 'main'
+...
+```
+
+The `deploy-cloudrun` workflow uses the `google-github-actions/auth@v0` with a 
+`Service Account JSON key` to authenticate with Google Cloud. The `JSON`  key 
+is stored as a Github secret and is named `GC_SA_ADMNIN_KEY`.
+
+```{yaml, eval=FALSE}
+- name: 'Authenticate GCP 🔐'
+  id: 'auth'
+  uses: 'google-github-actions/auth@v1'
+  with:
+    credentials_json: '${{ secrets.GC_SA_ADMNIN_KEY }}'
+```
+
+Once the workflow is done, you will see your deployment on the [Cloud Run Overview](https://console.cloud.google.com/run).
 
 ---
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
