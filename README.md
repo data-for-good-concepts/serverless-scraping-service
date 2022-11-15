@@ -69,7 +69,7 @@ highlighted or are heavily in use as part of this concept - `RSelenium`,
 `plumber`, `Docker`, `Google Cloud Build`, `Google Cloud Run` and
 `GitHub Actions`.
 
-### Usage
+## Usage
 
 In order to launch the scraping service locally, install the necessary
 dependencies and start the web service by executing following commands
@@ -80,7 +80,7 @@ renv::restore()
 source('src/server.R')
 ```
 
-#### Trigger scraping job
+### Trigger scraping job
 
 Start a scraping job by making a `POST` request to the trigger endpoint.
 When you are working locally, replace `<URL>` with `localhost:8080`.
