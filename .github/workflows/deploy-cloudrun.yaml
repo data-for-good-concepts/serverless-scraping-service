@@ -19,7 +19,7 @@ jobs:
 
     - name: 'Authenticate GCP 🔐'
       id: 'auth'
-      uses: 'google-github-actions/auth@v0'
+      uses: 'google-github-actions/auth@v1'
       with:
         credentials_json: '${{ secrets.GC_SA_ADMNIN_KEY }}'
 
