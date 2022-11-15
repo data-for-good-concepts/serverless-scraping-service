@@ -48,7 +48,9 @@ a `REST` API, which is possible using any modern programming language.
 
 ## Architecture
 
-<img src="man/figures/architecture.png" align="middle" width="65%" alt="scraper web service architecture."/>
+<p align="center">
+  <img src="man/figures/architecture.png" width="65%" alt="scraper web service architecture."/>
+</p>
 
 ## Prerequisites
 
