@@ -4,7 +4,7 @@ If you believe you have found a security vulnerability in any data-for-good-conc
 
 **Please do not report security vulnerabilities through public GitHub issues, discussions, or pull requests.**
 
-Instead, please send an email to c.jeniffen[@]gmail.com.
+Instead, please send an email to c.jeniffen[@]gmail.com or open a new security advisory.
 
 Please include as much of the information listed below as you can to help us better understand and resolve the issue:
 
