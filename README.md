@@ -115,15 +115,20 @@ As a response the scraping service will return the requested dataset as
 
 ## Deployment
 
-In order to run this web service on Google Cloud, please make sure you
-have a [Google Cloud Account](https://cloud.google.com/). Create a
+The following steps will walk you through the steps to create a `build`
+of this project using
+[`Google Cloud Build`](https://cloud.google.com/build/docs/overview#:~:text=Cloud%20Build%20is%20a%20service,Docker%20containers%20or%20Java%20archives.)
+and then deploy it on
+[`Google Cloud Run`](https://cloud.google.com/run/docs/overview/what-is-cloud-run).
+
+In order to deploy this web service on Google Cloud, please make sure
+you have a [Google Cloud Account](https://cloud.google.com/). Create a
 project within your account and enable the
 [`Cloud Build API`](https://console.cloud.google.com/apis/library/cloudbuild.googleapis.com)
 as well as the
 [`Cloud Run API`](https://console.cloud.google.com/apis/library/run.googleapis.com).
-In order to deploy this service from the command line, you will further
-need to install the
-[`gcloud CLI`](https://cloud.google.com/sdk/docs/install).
+To deploy this service from the command line, you will further need to
+install the [`gcloud CLI`](https://cloud.google.com/sdk/docs/install).
 
 In case you want to modify deployment parameters, feel free to adjust
 the `cloudbuild.yaml` according to your needs.
@@ -134,15 +139,40 @@ the `cloudbuild.yaml` according to your needs.
 
 ### Using the terminal
 
-You can deploy this service on Google Cloud by executing the following
-command in the command line. Make sure to replace `<REGION>` with the
-[Google Cloud
-region](https://cloud.google.com/compute/docs/regions-zones), you want
-to use for the deployment of your web service.
+Once `gcloud CLI` is installed, execute the following command in the
+terminal in order to login to your Googgle Account and to authenticate
+subsequent commands to deploy your service on Google Cloud. This command
+will open a browser prompt that will ask you to `Sign in with Google`
+and to grant `Google Cloud SDK` access to your Google account.
+
+``` bash
+gcloud auth login
+```
+
+Set the project in which the web service is deployed to. Make sure to
+replace `PROJECT_ID` with your own project id.
+
+``` bash
+gcloud config set project <PROJECT_ID>
+```
+
+You can then deploy this service on Google Cloud by executing the
+following command. Make sure to replace `<REGION>` with the [Google
+Cloud region](https://cloud.google.com/compute/docs/regions-zones), you
+want to use for the deployment of your web service.
 
 ``` bash
 gcloud builds submit --region='<REGION>'
 ```
+
+You can see the logs of the build in the [Cloud Build
+History](https://console.cloud.google.com/cloud-build). In case you
+don’t see your `build`, make sure you have selected your region in the
+dropdown. When deploying for the first time, the build process can take
+up-to 25min. Subsequent deployments should be done in less than 5min, as
+we then make use of `cached` Docker images. Once the build is done, you
+will see your deployment on the [Cloud Run
+Overview](https://console.cloud.google.com/run).
 
 ### Using GitHub Actions
 
