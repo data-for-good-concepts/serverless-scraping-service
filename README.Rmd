@@ -48,9 +48,7 @@ a `REST` API, which is possible using any modern programming language.
 
 ## Architecture
 
-```{r, echo=FALSE, out.width="65%", fig.cap="scraper web service architecture.", fig.align = 'center'}
-knitr::include_graphics("man/figures/architecture.png")
-```
+<img src="man/figures/architecture.png" align="middle" width="65%" alt="scraper web service architecture."/>
 
 ## Prerequisites
 

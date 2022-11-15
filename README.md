@@ -42,7 +42,7 @@ programming language.
 
 ## Architecture
 
-<img src="man/figures/architecture.png" alt="scraper web service architecture." width="65%" style="display: block; margin: auto;" />
+<img src="man/figures/architecture.png" align="middle" width="65%" alt="scraper web service architecture."/>
 
 ## Prerequisites
 
