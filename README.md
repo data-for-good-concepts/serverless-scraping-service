@@ -149,21 +149,30 @@ and to grant `Google Cloud SDK` access to your Google account.
 gcloud auth login
 ```
 
-…
+Set the project in which the web service is deployed to. Make sure to
+replace `PROJECT_ID` with your own project id.
 
 ``` bash
 gcloud config set project <PROJECT_ID>
 ```
 
-You can deploy this service on Google Cloud by executing the following
-command in the command line. Make sure to replace `<REGION>` with the
-[Google Cloud
-region](https://cloud.google.com/compute/docs/regions-zones), you want
-to use for the deployment of your web service.
+You can then deploy this service on Google Cloud by executing the
+following command. Make sure to replace `<REGION>` with the [Google
+Cloud region](https://cloud.google.com/compute/docs/regions-zones), you
+want to use for the deployment of your web service.
 
 ``` bash
 gcloud builds submit --region='<REGION>'
 ```
+
+You can see the logs of the build in the [Cloud Build
+History](https://console.cloud.google.com/cloud-build). In case you
+don’t see your `build`, make sure you have selected your region in the
+dropdown. When deploying for the first time, the build process can take
+up-to 25min. Subsequent deployments should be done in less than 5min, as
+we then make use of `cached` Docker images. Once the build is done, you
+will see your deployment on the [Cloud Run
+Overview](https://console.cloud.google.com/run).
 
 ### Using GitHub Actions
 
