@@ -185,7 +185,7 @@ on:
 ...
 ```
 
-The `deploy-cloudrun` workflow uses the `google-github-actions/auth@v0` with a 
+The `deploy-cloudrun` workflow uses the `google-github-actions/auth@v1` with a 
 `Service Account JSON key` to authenticate with Google Cloud. The `JSON`  key 
 is stored as a Github secret and is named `GC_SA_ADMNIN_KEY`.
 
