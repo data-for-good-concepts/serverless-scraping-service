@@ -5,7 +5,7 @@ on:
       - 'main'
 
 env:
-  SERVICE: 'eurostat-scraper'
+  SERVICE: 'serverless-scraping-service'
   PROJECT_ID: 'data-for-good-concepts'
   REGION: 'europe-west1'
 

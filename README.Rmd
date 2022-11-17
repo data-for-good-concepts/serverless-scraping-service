@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Eurostat Scraper Web Service<img src="man/figures/logo.png" align="right" height="139"/>
+# Serverless Scraping Web Service<img src="man/figures/logo.png" align="right" height="139"/>
 
 <!-- badges: start -->
 
