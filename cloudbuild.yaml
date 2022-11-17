@@ -37,4 +37,4 @@ options:
   substitutionOption: ALLOW_LOOSE
   logging: CLOUD_LOGGING_ONLY
 substitutions:
-  _SERVICE_NAME: 'eurostat-scraper'
+  _SERVICE_NAME: 'serverless-scraping-service'
