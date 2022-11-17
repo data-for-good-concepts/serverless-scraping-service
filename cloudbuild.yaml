@@ -30,7 +30,7 @@ steps:
           '--update-env-vars', 'R_ENV=production'
         ]
 
-timeout: 1800s
+timeout: 2700s
 images: ['gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest']
 
 options:
