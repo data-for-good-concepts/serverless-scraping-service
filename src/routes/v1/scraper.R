@@ -2,11 +2,10 @@
 #* @tag health
 #* @post /job
 #* @response 200 OK
+#* @parser json list(simplifyVector = FALSE)
 function(req, res){
 
-  url <- 'https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en'
-
-  job <- scrape_eurostat(url)
+  job <- scrape_eurostat(req$body)
 
   #' Scraped data should always be a `tibble`
   if(!is_tibble(job)) {
@@ -18,3 +17,15 @@ function(req, res){
 
   return(job)
 }
+
+# TODO Remove test data
+
+# # Download dataset
+# # Select format options
+# options <- list(
+#   type     = tolower('.csv'),
+#   per_line = 'One observation',
+#   scope    = 'Custom dataset',
+#   na       = 'No',
+#   compress = 'Yes'
+# )

@@ -88,7 +88,49 @@ When you have the web service deployed on Google Cloud Run, use your
 Cloud Run service URL.
 
 ``` bash
-curl --location --request POST '<URL>/api/v1/scraper/job'
+# bash
+curl --location --request POST '<URL>/api/v1/scraper/job' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+   "url": "https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en",
+   "dataset":[
+      {
+         "dimension":"Age class",
+         "filter":[
+            "[Y18-34]",
+            "[Y35-64]",
+            "[Y_GE65]"
+         ]
+      },
+      {
+         "dimension":"Country of citizenship",
+         "filter":[
+            "[UA]"
+         ]
+      }
+   ]
+}'
+```
+
+``` r
+# R
+httr::POST(
+  '<URL>/api/v1/scraper/job', 
+  body = list(
+           url = "https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en",
+           dataset = list(
+                       list(
+                         dimension = 'Age class', 
+                         filter    = list('[Y_LT14]', '[Y14-17]')
+                       ),
+                       list(
+                         dimension = 'Country of citizenship',
+                         filter    = list('[UA]')
+                       )
+                     )
+         ),
+  encode = "json"
+)
 ```
 
 As a response the scraping service will return the requested dataset as
@@ -103,7 +145,7 @@ As a response the scraping service will return the requested dataset as
         "unit": "PER",
         "citizen": "UA",
         "sex": true,
-        "age": "Y14-17",
+        "age": "Y18-34",
         "asyl_app": "ASY_APP",
         "geo": "AT",
         "TIME_PERIOD": "2021-12",
@@ -116,7 +158,7 @@ As a response the scraping service will return the requested dataset as
         "unit": "PER",
         "citizen": "UA",
         "sex": true,
-        "age": "Y14-17",
+        "age": "Y18-34",
         "asyl_app": "ASY_APP",
         "geo": "AT",
         "TIME_PERIOD": "2022-01",

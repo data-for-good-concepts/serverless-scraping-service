@@ -1,11 +1,5 @@
-scrape_eurostat <- function(url) {
-
-  # TODO Remove test data
-  url <- 'https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en'
-  user_customization <- list(
-    list(dimension = 'Age class', filter = list('[Y_LT14]', '[Y14-17]')),
-    list(dimension = 'Country of citizenship', filter = list('[UA]'))
-  )
+scrape_eurostat <- function(payload) {
+  job_options <- .parse_options(payload)
 
   response <- NULL
   tryCatch(
@@ -17,13 +11,13 @@ scrape_eurostat <- function(url) {
       remDr$setTimeout(type = "implicit", milliseconds = 5000)
       log_success('Launched Firefox browser')
 
-      rmDr_navigate_to_url(remDr, url)
-      log_success(glue('Navigated to {url}'))
+      rmDr_navigate_to_url(remDr, job_options$url)
+      log_success(glue('Navigated to {job_options$url}'))
 
       eurostat_open_custom_extraction(remDr)
       log_success('Opened custom extractor')
 
-      eurostat_create_custom_extraction(remDr, user_customization)
+      eurostat_create_custom_extraction(remDr, job_options$dataset)
       log_success('Custom extraction created')
 
       response <- eurostat_download_dataset(remDr)
@@ -39,4 +33,13 @@ scrape_eurostat <- function(url) {
   )
 
   return(response)
+}
+
+.parse_options <- function(payload){
+  job_options <- list()
+
+  job_options$url     <- payload$url %||% .config$defaultUrl
+  job_options$dataset <- as.list(payload$dataset)
+
+  return(job_options)
 }

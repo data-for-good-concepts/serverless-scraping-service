@@ -1,0 +1,4 @@
+{
+  "invalid_json_content_type":"Content-Type {content_type} not allowed. Content-Type must be 'application/json'",
+  "invalid_json_body":"Recevied invalid JSON body"
+}
