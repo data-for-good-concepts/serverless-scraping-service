@@ -15,5 +15,8 @@ pacman::p_load(
   "RSelenium",
   "httr",
   "readr",
-  "tibble"
+  "tibble",
+  "jsonlite",
+  "yaml",
+  "assertthat"
   )

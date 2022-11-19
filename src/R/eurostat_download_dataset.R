@@ -10,7 +10,6 @@
 #' A `tibble` containing the requested dataset
 #'
 eurostat_download_dataset <- function(remDr){
-  # Select format options
   options <- list(
     type     = tolower('.csv'),
     per_line = 'One observation',

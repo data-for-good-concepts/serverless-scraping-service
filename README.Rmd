@@ -28,7 +28,8 @@ knitr::opts_chunk$set(
 **Work In Progress**. The description might be incomplete and is subject to 
 constant change._  
 
-This example scrapes the _'Asylum applicants by type of applicant, citizenship, age and sex - monthly data'_ from the [**Eurostat Data Browser**](https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en). 
+This example scrapes the _'Asylum applicants by type of applicant, citizenship, age and sex - monthly data'_ 
+from the [**Eurostat Data Browser**](https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en). 
 The scraper can be triggered with a `POST` request to an API endpoint, which 
 returns the scraped data as the `response`. Even though this example has been 
 developed to scrape one particular dataset, any other dataset that is available
@@ -87,7 +88,50 @@ have the web service deployed on Google Cloud Run, use your Cloud Run service
 URL.
 
 ```{bash, eval=FALSE}
-curl --location --request POST '<URL>/api/v1/scraper/job'
+# bash
+curl --location --request POST '<URL>/api/v1/scraper/job' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+   "url": "https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en",
+   "dataset":[
+      {
+         "dimension":"Age class",
+         "filter":[
+            "[Y18-34]",
+            "[Y35-64]",
+            "[Y_GE65]"
+         ]
+      },
+      {
+         "dimension":"Country of citizenship",
+         "filter":[
+            "[UA]"
+         ]
+      }
+   ]
+}'
+```
+
+```{r, eval=FALSE}
+# R
+httr::POST(
+  '<URL>/api/v1/scraper/job', 
+  body = list(
+           url = "https://ec.europa.eu/eurostat/databrowser/view/MIGR_ASYAPPCTZM/default/table?lang=en",
+           dataset = list(
+                       list(
+                         dimension = 'Age class', 
+                         filter    = list('[Y_LT14]', '[Y14-17]')
+                       ),
+                       list(
+                         dimension = 'Country of citizenship',
+                         filter    = list('[UA]')
+                       )
+                     )
+         ),
+  encode = "json"
+)
+
 ```
 
 As a response the scraping service will return the requested dataset as `JSON`.
@@ -101,7 +145,7 @@ As a response the scraping service will return the requested dataset as `JSON`.
         "unit": "PER",
         "citizen": "UA",
         "sex": true,
-        "age": "Y14-17",
+        "age": "Y18-34",
         "asyl_app": "ASY_APP",
         "geo": "AT",
         "TIME_PERIOD": "2021-12",
@@ -114,7 +158,7 @@ As a response the scraping service will return the requested dataset as `JSON`.
         "unit": "PER",
         "citizen": "UA",
         "sex": true,
-        "age": "Y14-17",
+        "age": "Y18-34",
         "asyl_app": "ASY_APP",
         "geo": "AT",
         "TIME_PERIOD": "2022-01",
@@ -162,12 +206,12 @@ you want to use for the deployment of your web service.
 gcloud builds submit --region='<REGION>'
 ```
 
-You can see the logs of the build in the [Cloud Build History](https://console.cloud.google.com/cloud-build). In case you don't see
-your `build `, make sure you have selected your region in the dropdown. When 
-deploying for the first time, the build process can take up-to 25min. Subsequent
-deployments should be done in less than 5min, as we then make use of `cached` 
-Docker images. Once the build is done, you will see your deployment on the
-[Cloud Run Overview](https://console.cloud.google.com/run).
+You can see the logs of the build in the [Cloud Build History](https://console.cloud.google.com/cloud-build).
+In case you don't see your `build `, make sure you have selected your region in 
+the dropdown. When deploying for the first time, the build process can take 
+up-to 25min. Subsequent deployments should be done in less than 5min, as we 
+then make use of `cached` Docker images. Once the build is done, you will see 
+your deployment on the [Cloud Run Overview](https://console.cloud.google.com/run).
 
 ### Using GitHub Actions
 

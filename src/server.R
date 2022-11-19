@@ -6,6 +6,7 @@ if(Sys.getenv("R_ENV") != 'production') setwd(here::here('src'))
 source("global.R")
 
 pr() %>%
+  pr_filter("check_json_body", check_json_body) %>%
   pr_mount(
     path   = "api/v1/health",
     router = pr("routes/v1/health.R")
