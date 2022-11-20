@@ -34,7 +34,7 @@ RUN apt-get update --quiet \
 
 # Install R package dependencies
 COPY renv.lock renv.lock
-RUN R -e "renv::restore()"
+RUN R -e "renv::restore(repos = c(RSPM = 'https://packagemanager.rstudio.com/cran/latest'))"
 
 # Remove unused files
 RUN rm geckodriver-v0.32.0-linux64.tar.gz

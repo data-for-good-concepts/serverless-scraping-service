@@ -22,7 +22,7 @@ eurostat_download_dataset <- function(remDr){
 
   # Include forced wait as element is in DOM before rendered
   .util_wait_for_element(remDr, xpaths$download)
-  .util_delay_web_interaction(5)
+  .util_delay_web_interaction(10)
   remDr$findElement("xpath", xpaths$download)$clickElement()
 
   .util_wait_for_element(

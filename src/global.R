@@ -7,7 +7,6 @@ source("packages.R")
 PORT  <- replace_na(strtoi(Sys.getenv("PORT")), 8080)
 R_ENV <- Sys.getenv("R_ENV")
 
-
 # Read configs ------------------------------------------------------------
 
 .config <- read_yaml("./config.yaml")
