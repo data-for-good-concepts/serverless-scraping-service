@@ -32,7 +32,7 @@ RUN apt-get update --quiet \
  && tar -xvzf geckodriver* \
  && chmod +x geckodriver
 
-# Install R package dependencies
+# Install pre-compiled R package dependencies
 COPY renv.lock renv.lock
 RUN R -e "renv::restore(repos = c(RSPM = 'https://packagemanager.rstudio.com/cran/latest'))"
 
