@@ -97,9 +97,8 @@ curl --location --request POST '<URL>/api/v1/scraper/job' \
       {
          "dimension":"Age class",
          "filter":[
-            "[Y18-34]",
-            "[Y35-64]",
-            "[Y_GE65]"
+            "[Y_LT14]",
+            "[Y14-17]"
          ]
       },
       {
@@ -145,7 +144,7 @@ As a response the scraping service will return the requested dataset as `JSON`.
         "unit": "PER",
         "citizen": "UA",
         "sex": true,
-        "age": "Y18-34",
+        "age": "Y14-17",
         "asyl_app": "ASY_APP",
         "geo": "AT",
         "TIME_PERIOD": "2021-12",
@@ -158,7 +157,7 @@ As a response the scraping service will return the requested dataset as `JSON`.
         "unit": "PER",
         "citizen": "UA",
         "sex": true,
-        "age": "Y18-34",
+        "age": "Y14-17",
         "asyl_app": "ASY_APP",
         "geo": "AT",
         "TIME_PERIOD": "2022-01",
